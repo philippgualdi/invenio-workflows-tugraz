@@ -1,0 +1,14 @@
+{# -*- coding: utf-8 -*-
+
+This file is part of Invenio. Copyright (C) 2023 Graz University of Technology. 
+
+Invenio is free software; you can redistribute it and/or modify it under the terms 
+of the MIT License; see LICENSE file for more
+details. #} 
+
+{% extends config.THEME_ERROR_TEMPLATE %} 
+
+{% block message %}
+<h1><i class="fa fa-flash"></i> {{_('Page not found')}}</h1>
+<p>{{description}}</p>
+{% endblock message %}

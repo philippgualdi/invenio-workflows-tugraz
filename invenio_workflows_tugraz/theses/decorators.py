@@ -17,6 +17,8 @@ from invenio_search import RecordsSearch
 from invenio_search.engine import dsl
 from sqlalchemy.exc import NoResultFound
 
+from .errors import ThesesIDNotFoundError
+
 
 def pass_record_from_pid(f):
     """Decorate a view to pass the record from a pid."""
@@ -38,7 +40,7 @@ def pass_record_from_pid(f):
         search = search.params(size=1)
         result = search.execute()
         if len(result["hits"]["hits"]) == 0:
-            abort(404)
+            raise ThesesIDNotFoundError()
         hits = result["hits"]["hits"][0]["_source"]
         hits = hits.to_dict()
 
